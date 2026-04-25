@@ -3,7 +3,7 @@ export interface AssetMeta {
   name: string;
   sector: string;
   asset_class: string;
-  risk_level: 'Low' | 'Medium' | 'High';
+  risk_level: 'Low' | 'Medium' | 'High' | 'Very High';
 }
 
 export interface Allocation {
@@ -12,7 +12,7 @@ export interface Allocation {
   weight: number;
   weight_pct: number;
   sector: string;
-  risk_level: 'Low' | 'Medium' | 'High';
+  risk_level: 'Low' | 'Medium' | 'High' | 'Very High';
   asset_class: string;
   annual_return: number;
   annual_vol: number;
