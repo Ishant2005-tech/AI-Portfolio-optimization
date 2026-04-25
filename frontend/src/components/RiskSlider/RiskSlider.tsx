@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function RiskSlider({ value, onChange }: Props) {
-  const labels: Record<string, string> = {
+ /* const labels: Record<string, string> = {
     '1': 'Very Conservative',
     '1.5': 'Conservative',
     '2': 'Moderate-Low',
@@ -16,7 +16,18 @@ export default function RiskSlider({ value, onChange }: Props) {
     '4': 'Growth',
     '4.5': 'Aggressive',
     '5': 'Very Aggressive',
-  }
+  }*/
+  const labels: Record<string, string> = {
+  '1': 'Very Aggressive',
+  '1.5': 'Aggressive',
+  '2': 'Growth',
+  '2.5': 'Moderate-High',
+  '3': 'Balanced',
+  '3.5': 'Moderate',
+  '4': 'Moderate-Low',
+  '4.5': 'Conservative',
+  '5': 'Very Conservative',
+}
 
   return (
     <div className={`${styles.wrapper} panel`}>
