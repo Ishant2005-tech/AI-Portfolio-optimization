@@ -64,7 +64,7 @@ def optimize_portfolio(prices_df: pd.DataFrame, selected_assets: List[str], risk
     n   = len(selected_assets)
 
     def objective(w):
-        return -(w @ mu.values - risk_aversion * w @ cov.values @ w)
+        return -(w @ mu.values - risk_aversion * w @ cov.values @ w)#markovnitz rule(dont put all the eggs in same basket)
 
     result = minimize(
         objective,
@@ -74,7 +74,7 @@ def optimize_portfolio(prices_df: pd.DataFrame, selected_assets: List[str], risk
         constraints={"type": "eq", "fun": lambda w: np.sum(w) - 1},
     )
     weights = result.x
-    port_return = float(weights @ mu.values)
+    port_return = float(weights @ mu.values)#slsqp
     port_vol    = float(np.sqrt(weights @ cov.values @ weights))
     sharpe      = port_return / port_vol if port_vol else 0
 
