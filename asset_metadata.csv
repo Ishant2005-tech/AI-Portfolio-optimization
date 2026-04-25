@@ -1,0 +1,9 @@
+,Ticker,Asset_Class,Sector,Risk_Level
+0,AAPL,Equity,Tech,Medium
+1,MSFT,Equity,Tech,Medium
+2,GOOGL,Equity,Tech,Medium
+3,AMZN,Equity,Consumer,Medium
+4,TSLA,Equity,Auto,High
+5,BTC-USD,Crypto,Currency,Very High
+6,GLD,Commodity,Metal,Low
+7,SPY,Index,Market,Low

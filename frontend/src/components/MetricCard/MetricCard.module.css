@@ -1,0 +1,39 @@
+.card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-xs);
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.green .value {
+  color: var(--green);
+}
+
+.amber .value {
+  color: var(--amber);
+}
+
+.blue .value {
+  color: var(--blue);
+}
