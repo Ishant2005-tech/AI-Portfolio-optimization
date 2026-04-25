@@ -17,16 +17,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------------------------------------------------------------------------
+
 # Asset metadata (replaces asset_metadata.csv)
-# ---------------------------------------------------------------------------
+
 ASSET_META = {}
 _meta_path = os.path.join(os.path.dirname(__file__), '..', 'asset_metadata.csv')
 if os.path.exists(_meta_path):
     _meta_df = pd.read_csv(_meta_path)
     for _, row in _meta_df.iterrows():
         ASSET_META[row['Ticker']] = {
-            "name": row['Ticker'], # Default to ticker if name is not present
+            "name": row['Ticker'], 
             "sector": row['Sector'],
             "asset_class": row['Asset_Class'],
             "risk_level": row['Risk_Level']
@@ -34,17 +34,17 @@ if os.path.exists(_meta_path):
 else:
     print(f"Warning: {_meta_path} not found")
 
-# ---------------------------------------------------------------------------
+
 # Simulated price generator (replaces portfolio_prices.csv)
 # Deterministic seed so results are reproducible
-# ---------------------------------------------------------------------------
+
 def generate_prices(tickers: List[str], n_days: int = 756) -> pd.DataFrame:
     try:
         _prices_path = os.path.join(os.path.dirname(__file__), '..', 'portfolio_prices.csv')
         df = pd.read_csv(_prices_path)
         df['Date'] = pd.to_datetime(df['Date'])
         df = df.set_index('Date')
-        # Return only the requested tickers that exist in the dataframe
+        
         available_tickers = [t for t in tickers if t in df.columns]
         if not available_tickers:
             raise ValueError("No matching tickers in prices data")
@@ -53,9 +53,9 @@ def generate_prices(tickers: List[str], n_days: int = 756) -> pd.DataFrame:
         print(f"Warning: Could not load portfolio_prices.csv: {e}")
         raise HTTPException(500, f"Could not load prices data: {e}")
 
-# ---------------------------------------------------------------------------
-# Core portfolio logic (your friend's code, refactored)
-# ---------------------------------------------------------------------------
+
+# Core portfolio logic 
+
 def optimize_portfolio(prices_df: pd.DataFrame, selected_assets: List[str], risk_aversion: float = 1):
     price_pivot = prices_df[selected_assets]
     returns = price_pivot.pct_change().dropna()
@@ -116,12 +116,11 @@ def explain_portfolio(allocation: pd.DataFrame, mu: pd.Series, cov: pd.DataFrame
     return explanations
 
 
-# ---------------------------------------------------------------------------
-# Request / response models
-# ---------------------------------------------------------------------------
+
+
 class OptimizeRequest(BaseModel):
     assets: List[str]
-    risk_aversion: float = 1.0   # 1 = conservative, 5 = aggressive
+    risk_aversion: float = 1.0   
 
 
 class OptimizeResponse(BaseModel):
@@ -132,9 +131,9 @@ class OptimizeResponse(BaseModel):
     efficient_frontier: List[dict]
 
 
-# ---------------------------------------------------------------------------
+
 # Routes
-# ---------------------------------------------------------------------------
+
 @app.get("/")
 def root():
     return {"message": "Portfolio Optimizer API is running 🚀"}
