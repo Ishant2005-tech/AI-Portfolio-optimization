@@ -44,8 +44,8 @@ export default function RiskSlider({ value, onChange }: Props) {
         className={styles.slider}
       />
       <div className={styles.labels}>
-        <span>Conservative</span>
-        <span>Aggressive</span>
+        <span>Aggresive</span>
+        <span>Conservatives</span>
       </div>
       <div className={styles.riskLabel}>
         {labels[value.toString()] ?? 'Balanced'}
