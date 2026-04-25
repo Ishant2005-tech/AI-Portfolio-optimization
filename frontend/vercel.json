@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://<YOUR_RENDER_URL>/$1"
+      "destination": "https://ai-portfolio-optimization.onrender.com/$1"
     },
     {
       "source": "/(.*)",
